@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#084C2E">
+
+    <!-- RecyclerView pour afficher les objets perdus -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLostItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSearch"
+        android:layout_marginTop="16dp" />
+
+    <!-- Titre principal -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FOUND"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
+    <!-- Champ de recherche -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        android:hint="Search for lost Items. eg.Wallets, Keys"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:textColorHint="#BDBDBD"
+        android:gravity="center"
+        android:padding="12dp"
+        android:layout_below="@id/tvTitle"
+        android:textSize="14sp" />
+
+    <!-- Bouton Search -->
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Search"
+        android:textAllCaps="false"
+        android:backgroundTint="#3AA56B"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif"
+        android:layout_below="@id/etSearch" />
+
+    <!-- Bouton View Claims -->
+    <Button
+        android:id="@+id/btnViewClaims"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="12dp"
+        android:text="View Claims"
+        android:textAllCaps="false"
+        android:backgroundTint="#3AA56B"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif"
+        android:layout_below="@id/btnSearch" />
+
+    <!-- Texte "Found a lost item?" -->
+    <TextView
+        android:id="@+id/tvReportPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Found a lost item?"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/btnViewClaims" />
+
+    <!-- Bouton Report -->
+    <Button
+        android:id="@+id/btnReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Report"
+        android:textAllCaps="false"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#084C2E"
+        android:fontFamily="sans-serif"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvReportPrompt"
+        android:paddingHorizontal="24dp" />
+</RelativeLayout>

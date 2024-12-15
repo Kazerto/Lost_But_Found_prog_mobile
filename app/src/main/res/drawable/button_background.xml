@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/_388E3C"/> <!-- La couleur de fond -->
+    <corners android:radius="8dp"/> <!-- Coins arrondis -->
+    <elevation android:radius="4dp"/> <!-- Ombre sous le bouton -->
+</shape>

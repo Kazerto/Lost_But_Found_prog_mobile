@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F1F5F9"> <!-- Fond gris clair pour une interface propre -->
+
+    <!-- Logo de l'application -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_profile"
+        android:contentDescription="@string/logo_description"
+        android:elevation="8dp"/> <!-- Ombre discrète pour donner un effet de profondeur -->
+
+    <!-- Titre de Bienvenue -->
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/welcome_to_lbf"
+        android:textColor="#34495E"
+    android:textSize="24sp"
+    android:textStyle="bold" />
+
+    <!-- Bouton: Signalement d'Objets Trouvés -->
+    <Button
+        android:id="@+id/reportFoundButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/welcomeText"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#3e92cc"
+    android:text="@string/objet"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:drawablePadding="8dp"
+    android:elevation="4dp"/>
+
+    <!-- Bouton: Recherche d'Objets Perdus -->
+    <Button
+        android:id="@+id/searchLostButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/reportFoundButton"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4ecca3"
+    android:text="@string/rechercher_un_objet_perdu"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:drawablePadding="8dp"
+    android:elevation="4dp"/>
+
+    <!-- Bouton: Recherche d'Objets Perdus Poster par moi-même -->
+    <Button
+        android:id="@+id/searchLostOwnButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/searchLostButton"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4ecca3"
+    android:text="@string/rechercher_un_objet_perdu_poster_par_moi_m_me"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:drawablePadding="8dp"
+    android:elevation="4dp"/>
+
+    <!-- Bouton: Mon Compte -->
+    <Button
+        android:id="@+id/myAccountButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/searchLostOwnButton"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#ffa45b"
+    android:text="@string/account"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:drawablePadding="8dp"
+    android:elevation="4dp"/>
+
+    <!-- Bouton: Déconnexion -->
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/myAccountButton"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/d_connexion"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+    android:drawablePadding="8dp"
+    android:elevation="4dp"/>
+
+</RelativeLayout>
