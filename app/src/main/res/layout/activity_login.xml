@@ -22,9 +22,9 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TROUVER"
+            android:text="FOUND"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="32sp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:layout_marginBottom="8dp" />
@@ -34,7 +34,7 @@
             android:id="@+id/tvSlogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sigaler un objet trouvé"
+            android:text="Reporting a found item"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:fontFamily="sans-serif"
@@ -55,46 +55,70 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+
+                <TextView
+                    android:id="@+id/loginTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Login"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
                 <!-- Champ Email -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Email">
+                    android:layout_marginBottom="2dp"
+                    android:text="Email"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/emailEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="#000000"
-                        android:textColorHint="#9E9E9E" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Champ Mot de Passe -->
-                <com.google.android.material.textfield.TextInputLayout
+                <!-- Champ Email -->
+                <EditText
+                    android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:hint="Ronaldo@example.com"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:textSize="16sp" />
+
+                <!-- Label Password -->
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Mot de passe"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginBottom="2dp"
+                    android:text="Password"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/passwordEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:textColor="#000000"
-                        android:textColorHint="#9E9E9E" />
-                </com.google.android.material.textfield.TextInputLayout>
-
+                <!-- Champ Password -->
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:hint="Passw0rd1234"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textSize="16sp" />
                 <!-- Bouton Login -->
                 <Button
                     android:id="@+id/loginButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Se connecter"
+                    android:text="Login"
+                    android:layout_marginLeft="70dp"
                     android:layout_marginTop="24dp"
                     android:backgroundTint="#084C2E"
                     android:textColor="#FFFFFF"
+                    app:cornerRadius="12dp"
                     android:textAllCaps="false" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -104,7 +128,7 @@
             android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pas de compte? Créer un compte"
+            android:text="No account? Create one"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:fontFamily="sans-serif"
@@ -113,12 +137,14 @@
         <!-- Bouton Créer un compte -->
         <Button
             android:id="@+id/signUpText"
-            android:layout_width="match_parent"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="Créer un compte"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#FFFFFF"
-            android:textColor="#084C2E"
+            android:text="Create an account"
             android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+            app:cornerRadius="12dp"
+
+            android:textColor="#084C2E" />
     </LinearLayout>
 </RelativeLayout>

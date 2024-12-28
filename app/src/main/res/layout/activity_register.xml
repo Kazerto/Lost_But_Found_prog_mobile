@@ -15,109 +15,126 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TROUVER"
+        android:text="FOUND"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp" />
 
     <!-- Sous-titre -->
+
+    <!-- Conteneur blanc -->
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signaler un objet trouvé"
+        android:layout_marginBottom="24dp"
+        android:text="Reporting a found item"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:layout_marginBottom="24dp" />
+        android:textSize="16sp" />
 
-    <!-- Conteneur blanc -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:background="#FFFFFF"
-        android:elevation="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="359dp"
+        android:layout_height="460dp"
         android:layout_gravity="center"
-        android:clipToOutline="true"
-        android:backgroundTint="#FFFFFF"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="11dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="15dp"
         android:shape="@drawable/rounded_rectangle">
+
+
+        <!-- Champ E-mail -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Register"
+            android:textColor="#000000"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:text="Email"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"/>
-        <!-- Champ E-mail -->
+            android:textSize="14sp" />
+
         <EditText
 
-            android:layout_marginBottom="16dp"
-            android:padding="12dp"
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#DDDDDD"
+            android:hint="Ronaldo@example.com"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
             android:textSize="16sp" />
 
         <!-- Champ Mot de Passe -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mot de Passe"
+            android:layout_marginBottom="2dp"
+            android:text="Password"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"/>
+            android:textSize="14sp" />
+
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Password"
-            android:inputType="textPassword"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#DDDDDD"
-            android:layout_marginBottom="16dp"
+            android:hint="Passw0rd1234"
+            android:inputType="textPassword"
             android:padding="12dp"
             android:textSize="16sp" />
-        <!-- Champ Nom -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"/>
-        <EditText
-            android:id="@+id/usernameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Name"
-            android:backgroundTint="#DDDDDD"
-            android:layout_marginBottom="16dp"
-            android:padding="12dp"
-            android:textSize="16dp" />
 
         <!-- Champ Nom -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#DDDDDD"
+            android:hint="Cristiano Ronaldo"
+            android:padding="12dp"
+            android:textSize="16dp" />
+
+        <!-- Champ contact -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:text="Contact Number"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"/>
+            android:textSize="14sp" />
+
         <EditText
             android:id="@+id/phoneEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Contact Number"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#DDDDDD"
-            android:layout_marginBottom="16dp"
+            android:hint="+241 060379588"
             android:padding="12dp"
             android:textSize="16dp" />
 
@@ -125,15 +142,18 @@
         <!-- Bouton d'inscription -->
         <Button
             android:id="@+id/registerButton"
-            android:layout_width="match_parent"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
             android:backgroundTint="#008055"
-            android:text="S'inscrire"
+            android:paddingVertical="1dp"
+            android:text="Sign Up"
+            app:cornerRadius="12dp"
+
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:paddingVertical="12dp"
-            android:layout_gravity="center" />
+            android:textAllCaps="false"/>
     </LinearLayout>
 
     <!-- Lien pour se connecter -->
@@ -141,7 +161,7 @@
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vous avez déjà un compte ? Connectez-vous."
+        android:text="Already have an account ? Log in."
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
