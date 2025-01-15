@@ -49,6 +49,7 @@
         android:shape="@drawable/rounded_rectangle">
 
 
+
         <!-- Champ E-mail -->
 
         <TextView

@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#F4F4F4">
 
     <LinearLayout
@@ -17,46 +18,62 @@
             android:text="Name"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="5dp" />
 
         <EditText
             android:id="@+id/etName"
             android:hint="Nom de l'objet"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_style"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:paddingBottom="8dp" />
 
         <!-- Champ Image -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Image"
-            android:textColor="#333333"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/btnUploadImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:textAllCaps="false"
-            android:backgroundTint="#3AA56B"
-            android:textColor="#FFFFFF"
-            android:paddingHorizontal="12dp" />
-
-        <ImageView
-            android:id="@+id/imgView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"
-            android:background="@drawable/rounded_background"
-            android:elevation="4dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+
+                <Button
+                    android:id="@+id/btnUploadImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Image"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#3AA56B"
+                    android:textColor="#FFFFFF"
+                    android:paddingHorizontal="12dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:id="@+id/imgUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_background"
+                    android:elevation="4dp"
+                    android:padding="2dp"
+                    tools:srcCompat="@tools:sample/avatars"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <!-- Catégorie -->
         <TextView
@@ -71,7 +88,7 @@
         <Spinner
             android:id="@+id/spinnerCategories"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_style" />
 
         <!-- Description -->
@@ -81,14 +98,14 @@
             android:text="Description"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp" />
 
         <EditText
             android:id="@+id/etDescription"
             android:hint="Description"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/edittext_style"
             android:textColor="#000000"
             android:textSize="14sp"
@@ -101,18 +118,17 @@
             android:text="Address"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp" />
 
         <EditText
             android:id="@+id/etAddress"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
             android:background="@drawable/edittext_style"
             android:textColor="#000000"
             android:textSize="14sp"
             android:hint="Address"
-            android:paddingBottom="8dp"
             android:inputType="textMultiLine" />
 
         <Button
@@ -132,18 +148,17 @@
             android:text="Contact Number"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:layout_marginBottom="4dp" />
 
         <EditText
             android:id="@+id/etContactNumber"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_style"
             android:textColor="#000000"
             android:textSize="14sp"
             android:hint="Contact Number"
-            android:paddingBottom="8dp"
             android:inputType="phone" />
 
         <!-- Claimed Checkbox -->

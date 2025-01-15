@@ -128,5 +128,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
+
+        // Gestion du bouton pour signaler un objet perdu
+        binding.btnReset.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

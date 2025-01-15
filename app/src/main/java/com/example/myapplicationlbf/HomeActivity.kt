@@ -48,7 +48,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Gestion du bouton pour signaler un objet perdu
         binding.btnReport.setOnClickListener {
-            val intent = Intent(this@HomeActivity, MainActivity::class.java)
+            val intent = Intent(this@HomeActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }

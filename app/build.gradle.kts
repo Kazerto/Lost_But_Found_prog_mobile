@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -54,12 +55,14 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
     implementation(libs.play.services.location)
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
 
-    implementation ("com.google.android.gms:play-services-location:18.0.0")
-    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:18.3.0")
+    implementation ("com.google.android.gms:play-services-maps:19.0.0")
     // AndroidX Libraries via `libs` (si tu utilises `libs.versions.toml`)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

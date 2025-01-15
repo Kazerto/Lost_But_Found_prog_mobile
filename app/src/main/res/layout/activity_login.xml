@@ -124,17 +124,25 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Lien vers création de compte -->
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#084C2E"
+            android:text="Password forget ?"
+            android:textAllCaps="false"/>
+        <!-- Bouton Créer un compte -->
         <TextView
             android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
             android:text="No account? Create one"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif"
-            android:layout_marginTop="16dp" />
+            android:textSize="14sp" />
 
-        <!-- Bouton Créer un compte -->
         <Button
             android:id="@+id/signUpText"
             android:layout_width="170dp"
@@ -143,8 +151,10 @@
             android:backgroundTint="#FFFFFF"
             android:text="Create an account"
             android:textAllCaps="false"
-            app:cornerRadius="12dp"
+            android:textColor="#084C2E"
 
-            android:textColor="#084C2E" />
+            app:cornerRadius="12dp" />
+
+
     </LinearLayout>
 </RelativeLayout>

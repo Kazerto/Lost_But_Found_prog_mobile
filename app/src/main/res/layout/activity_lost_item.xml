@@ -33,20 +33,21 @@ android:elevation="4dp"/>
 android:elevation="4dp"/>
 
 <!-- Champ de texte pour le titre -->
-<EditText
-    android:id="@+id/titleInput"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="24dp"
-    android:hint="Titre de l'objet"
-    android:inputType="text"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:textColor="#2C3E50"
-    android:textColorHint="#A5A5A5"
-    android:background="@drawable/edittext_background"/>
 
-<!-- Champ de texte pour la description -->
+    <!-- Champ de texte pour la description -->
+    <EditText
+        android:id="@+id/titleInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Titre de l'objet"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#2C3E50"
+        android:textColorHint="#A5A5A5" />
+
     <EditText
         android:id="@+id/descriptionInput"
         android:layout_width="match_parent"

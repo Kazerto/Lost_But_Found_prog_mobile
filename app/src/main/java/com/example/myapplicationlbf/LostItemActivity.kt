@@ -9,6 +9,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,7 @@ class LostItemActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         // Configuration du Spinner pour les catégories
-        val categories = listOf("Electronics", "Clothing", "Books", "Jewelry", "Wallets", "Phones", "Bags", "Keys", "ID Cards", "Other")
+        val categories = listOf("Bags", "Books", "Clothing", "Electronics", "ID Cards", "Jewelry", "Keys", "Other", "Phones", "Wallets")
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategories.adapter = spinnerAdapter
@@ -125,6 +126,12 @@ class LostItemActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+        if (imagePart != null) {
+            Log.d("ImageUpload", "ImagePart is created with name: ${imagePart.body?.contentType()}")
+        } else {
+            Log.e("ImageUpload", "ImagePart is null")
+        }
+
         val apiService = retrofit.create(ApiService::class.java)
 
         // Récupérer le token d'authentification
@@ -159,8 +166,11 @@ class LostItemActivity : AppCompatActivity() {
 
     private fun uploadImage(uri: Uri): MultipartBody.Part {
         val file = File(getRealPathFromURI(uri))
+        Log.d("ImagePath", "chemin image: ${getRealPathFromURI(uri)}")
         val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         return MultipartBody.Part.createFormData("image", file.name, requestBody)
+        Log.d("ImageUpload", "nom fichier: ${file.name}")
+
     }
 
     private fun getRealPathFromURI(uri: Uri): String {
@@ -172,11 +182,12 @@ class LostItemActivity : AppCompatActivity() {
         return filePath ?: ""
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == 101) {
             val selectedImageUri = data?.data
-            binding.imgView.setImageURI(selectedImageUri)
+            binding.imgUpload.setImageURI(selectedImageUri)
             imageUri = selectedImageUri
         }
     }
