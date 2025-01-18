@@ -15,12 +15,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.Response.LoginResponse
 import com.example.myapplicationlbf.Response.LostItemResponse
 import com.example.myapplicationlbf.databinding.ActivityAddLostItemBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -35,7 +37,7 @@ import java.io.File
 import java.io.IOException
 import java.util.*
 
-class LostItemActivity : AppCompatActivity() {
+class LostItemActivity : BaseActivity() {
     private lateinit var binding: ActivityAddLostItemBinding
     private var imageUri: Uri? = null  // URI pour l'image sélectionnée
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -70,6 +72,14 @@ class LostItemActivity : AppCompatActivity() {
         binding.btnCreateCase.setOnClickListener {
             submitForm()
         }
+
+        // Setup toolbar
+        setupToolbar("Signaler un objet")
+
+// Setup drawer
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        setupDrawer(drawerLayout, navigationView)
     }
 
     private fun getCurrentLocation() {

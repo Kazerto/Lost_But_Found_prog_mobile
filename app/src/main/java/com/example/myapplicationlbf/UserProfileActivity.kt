@@ -3,10 +3,12 @@ package com.example.myapplicationlbf
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.Response.User
 import com.example.myapplicationlbf.databinding.ActivityUserProfileBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,7 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Response
 
-class UserProfileActivity : AppCompatActivity() {
+class UserProfileActivity : BaseActivity() {
 
     // Initialisation du binding pour l'interface utilisateur
     private lateinit var binding: ActivityUserProfileBinding
@@ -53,6 +55,14 @@ class UserProfileActivity : AppCompatActivity() {
                 updateUserProfile(authToken)
             }
         }
+        // Setup toolbar
+        setupToolbar("Profil Utilisateur")
+
+// Setup drawer
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        setupDrawer(drawerLayout, navigationView)
+
     }
 
     // Fonction pour valider l'email avec regex

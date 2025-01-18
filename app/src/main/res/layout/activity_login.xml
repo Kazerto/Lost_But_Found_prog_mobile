@@ -22,7 +22,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FOUND"
+            android:text="LOST BUT FOUND"
             android:textColor="#FFFFFF"
             android:textSize="32sp"
             android:fontFamily="sans-serif-medium"

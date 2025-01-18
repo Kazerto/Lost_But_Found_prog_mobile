@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LBF ING3 2024</string>
+    <string name="app_name">Lost But Found</string>
 
     <!--recuperation de text long en ecrivant ceci on peut une performance sur les phrases ou les mots-->
     <string name="logo_desc"></string>
@@ -33,6 +33,8 @@
     <string name="rechercher_un_objet_perdu_poster_par_moi_m_me">Rechercher un Objet Perdu Poster par moi-même</string>
     <string name="rechercher_un_objet_perdu">Rechercher un Objet Perdu</string>
     <string name="forgot_password">Mot de passe oublie?</string>
+    <string name="mes_objets_trouves"> Mes objets trouvés</string>
+    <string name="lost_but_found"> Lost But Found </string>
 
     <string name="forgot_password_title">Réinitialiser le mot de passe</string>
     <string name="send_otp">Envoyer OTP</string>

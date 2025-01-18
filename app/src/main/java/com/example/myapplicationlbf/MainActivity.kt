@@ -6,21 +6,28 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var apiService: ApiService  // Votre service API pour effectuer les appels réseau
 
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
     // CoroutineScope pour lancer des appels suspendus
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -32,6 +39,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialiser le Drawer Layout
+        drawerLayout = binding.drawerLayout
+        navigationView = binding.navigationView
+
+        // Configurer la Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_account) // Icône du menu burger
+        }
 
         // Initialiser l'apiService
         apiService = Retrofit.Builder()
@@ -54,31 +71,47 @@ class MainActivity : AppCompatActivity() {
             verifyToken(authToken)
         }
 
-        // Actions des boutons
-        binding.logoutButton.setOnClickListener { logout() }
+        // Configurer le NavigationView
+        setupNavigationView()
 
-        binding.reportFoundButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, LostItemActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Signaler un Objet Trouvé", Toast.LENGTH_SHORT).show()
+        // Charger le fragment par défaut (LostItemRetrieval)
+        if (savedInstanceState == null) {
+            startActivity(Intent(this, LostItemRetrievalActivity::class.java))
         }
 
-        binding.searchLostButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, LostItemRetrievalActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Rechercher un Objet Perdu", Toast.LENGTH_SHORT).show()
-        }
+    }
 
-        binding.searchLostOwnButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, LostItemOwnRetrievalActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Rechercher un Objet Perdu Poster par moi-même", Toast.LENGTH_SHORT).show()
+    private fun setupNavigationView() {
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_report_found -> {
+                    startActivity(Intent(this, LostItemActivity::class.java))
+                }
+                R.id.nav_search_lost -> {
+                    startActivity(Intent(this, LostItemRetrievalActivity::class.java))
+                }
+                R.id.nav_search_own -> {
+                    startActivity(Intent(this, LostItemOwnRetrievalActivity::class.java))
+                }
+                R.id.nav_account -> {
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                }
+                R.id.nav_logout -> {
+                    logout()
+                }
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
         }
+    }
 
-        binding.myAccountButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, UserProfileActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Accéder à mon compte", Toast.LENGTH_SHORT).show()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.Response.LostItemResponse
 import com.example.myapplicationlbf.databinding.ActivityViewClaimsBinding
+import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ViewClaimsActivity : AppCompatActivity() {
+class ViewClaimsActivity : BaseActivity() {
     private lateinit var binding: ActivityViewClaimsBinding
     private lateinit var apiService: ApiService
     private var lostItemsList: List<LostItemResponse> = emptyList() // Liste des objets perdus
@@ -50,6 +52,14 @@ class ViewClaimsActivity : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable?) {}
         })
+
+        // Setup toolbar
+        setupToolbar("Les objets perdus")
+
+// Setup drawer
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        setupDrawer(drawerLayout, navigationView)
     }
 
     private fun fetchLostItems() {

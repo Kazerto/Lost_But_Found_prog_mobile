@@ -4,19 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.Response.LostItem
 import com.example.myapplicationlbf.databinding.ActivityLostItemBinding
 import com.example.myapplicationlbf.databinding.ActivityLostItemRetrievalBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class LostItemRetrievalActivity : AppCompatActivity() {
+class LostItemRetrievalActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLostItemRetrievalBinding
     private lateinit var apiService: ApiService
@@ -61,6 +63,14 @@ class LostItemRetrievalActivity : AppCompatActivity() {
 
         // Configurer le SearchView pour la recherche d'objets perdus
         setupSearchView()
+
+        // Setup toolbar
+        setupToolbar("Objets perdus")
+
+// Setup drawer
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        setupDrawer(drawerLayout, navigationView)
     }
 
     private fun fetchLostItems(authToken: String, searchQuery: String = "") {

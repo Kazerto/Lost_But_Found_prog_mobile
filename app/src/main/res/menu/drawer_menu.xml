@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_report_found"
+        android:icon="@drawable/ic_post"
+        android:title="@string/objet"/>
+
+    <item
+        android:id="@+id/nav_search_lost"
+        android:icon="@drawable/ic_search"
+        android:title="@string/rechercher_un_objet_perdu"/>
+
+    <item
+        android:id="@+id/nav_search_own"
+        android:icon="@drawable/ic_eye"
+        android:title="@string/mes_objets_trouves"/>
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_account"
+        android:title="@string/account"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/d_connexion"/>
+</menu>
