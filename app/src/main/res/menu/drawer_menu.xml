@@ -24,4 +24,9 @@
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_logout"
         android:title="@string/d_connexion"/>
+
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_phone"
+        android:title="Quitter"/>
 </menu>

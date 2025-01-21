@@ -2,6 +2,7 @@ package com.example.myapplicationlbf
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplicationlbf.databinding.ActivityLoginBinding
@@ -18,7 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -26,6 +27,19 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Vérifier si l'utilisateur est déjà connecté
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+        val lastLoginTime = sharedPreferences.getLong("last_login_time", 0)
+        val currentTime = System.currentTimeMillis()
+        val thirtyDaysInMillis = 30L * 24 * 60 * 60 * 1000  // 30 jours en millisecondes
+
+        if (!token.isNullOrEmpty() && (currentTime - lastLoginTime) < thirtyDaysInMillis) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
 
         // Setup the logging interceptor for Retrofit
         val loggingInterceptor = HttpLoggingInterceptor()
@@ -68,6 +82,10 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Afficher le ProgressBar
+            binding.loadingProgressBar.visibility = View.VISIBLE
+            binding.loginButton.isEnabled = false  // Désactiver le bouton pendant le chargement
+
             // Create the login request
             val loginRequest = LoginRequest(email, password)
 
@@ -78,7 +96,8 @@ class LoginActivity : AppCompatActivity() {
             apiService.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     // Masquer le ProgressBar dès qu'on a la réponse
-                   // binding.loadingProgressBar.visibility = android.view.View.GONE
+                    binding.loadingProgressBar.visibility = View.GONE
+                    binding.loginButton.isEnabled = true  // Réactiver le bouton
 
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
@@ -91,6 +110,7 @@ class LoginActivity : AppCompatActivity() {
                             val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
                             editor.putString("auth_token", token)
+                            editor.putLong("last_login_time", System.currentTimeMillis())  // Ajouter le timestamp
                             editor.apply()
 
                             // Naviguer vers MainActivity
@@ -121,7 +141,8 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     // Masquer le ProgressBar en cas de problème
-                   // binding.loadingProgressBar.visibility = android.view.View.GONE
+                    binding.loadingProgressBar.visibility = View.GONE
+                    binding.loginButton.isEnabled = true
 
                     // Gérer les erreurs de réseau
                     Toast.makeText(this@LoginActivity, "Erreur réseau: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()

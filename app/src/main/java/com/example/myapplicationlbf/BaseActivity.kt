@@ -6,10 +6,13 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import java.lang.System.exit
+import kotlin.system.exitProcess
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -48,8 +51,22 @@ abstract class BaseActivity : AppCompatActivity() {
             R.id.nav_search_own -> startActivity(Intent(this, LostItemOwnRetrievalActivity::class.java))
             R.id.nav_account -> startActivity(Intent(this, UserProfileActivity::class.java))
             R.id.nav_logout -> logout()
+            R.id.nav_exit -> exit()
         }
     }
+
+    private fun exit() {
+        AlertDialog.Builder(this)
+            .setTitle("Quitter l'application")
+            .setMessage("Êtes-vous sûr de vouloir quitter ?")
+            .setPositiveButton("Oui") { _, _ ->
+                finishAffinity()
+                System.exit(0)
+            }
+            .setNegativeButton("Non", null)
+            .show()
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

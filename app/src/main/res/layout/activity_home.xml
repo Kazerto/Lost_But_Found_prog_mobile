@@ -17,7 +17,7 @@
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="FOUND"
+        android:text="LOST BUT FOUND"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold" />

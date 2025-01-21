@@ -45,7 +45,8 @@
                 android:queryBackground="@drawable/searchview_background"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:textColor="#2C3E50"/>
+                android:textColor="#2C3E50"
+                android:background="#E3EFE3"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"

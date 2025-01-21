@@ -42,18 +42,14 @@
             android:layout_marginBottom="32dp" />
 
         <!-- Card Layout pour le formulaire -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
 
-            <LinearLayout
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/rounded_background">
 
 
                 <TextView
@@ -113,6 +109,7 @@
                     android:id="@+id/loginButton"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+
                     android:text="Login"
                     android:layout_marginLeft="70dp"
                     android:layout_marginTop="24dp"
@@ -120,8 +117,14 @@
                     android:textColor="#FFFFFF"
                     app:cornerRadius="12dp"
                     android:textAllCaps="false" />
+
+                <ProgressBar
+                    android:id="@+id/loadingProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="center"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <!-- Lien vers création de compte -->
 
@@ -131,6 +134,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#084C2E"
             android:text="Password forget ?"
+            android:layout_gravity="center"
             android:textAllCaps="false"/>
         <!-- Bouton Créer un compte -->
         <TextView
@@ -154,6 +158,8 @@
             android:textColor="#084C2E"
 
             app:cornerRadius="12dp" />
+
+
 
 
     </LinearLayout>
