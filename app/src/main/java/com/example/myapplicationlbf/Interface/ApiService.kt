@@ -91,6 +91,14 @@ interface ApiService {
         @Body user: User
     ): Response<User>
 
+    @PUT("lostitemsOwn/{id}")
+    suspend fun updateItemStatus(
+        @Header("Authorization") authToken: String,
+        @Path("id") itemId: String,
+        @Body status: Map<String, Boolean>
+    ): Response<LostItemsResponse>
+
+
     @Multipart
     @POST("report-lost-item")
     fun reportLostItem(
@@ -99,7 +107,6 @@ interface ApiService {
         @Part("description") description: RequestBody,
         @Part("address") address: RequestBody,
         @Part("category") categorie: RequestBody,
-        @Part("contactNumber") contact: RequestBody,
         @Part image: MultipartBody.Part?,
         @Header("Authorization") authToken: String  // Token d'authentification
     ): Call<LostItemResponse>

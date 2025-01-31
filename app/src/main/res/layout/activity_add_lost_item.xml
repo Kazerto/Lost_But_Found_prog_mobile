@@ -36,7 +36,7 @@
 
             <EditText
                 android:id="@+id/etName"
-                android:hint="Nom de l'objet"
+                android:hint="Object name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edittext_style"
@@ -176,26 +176,26 @@
                 android:inputType="phone" />
 
             <!-- Claimed Checkbox -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="16dp">-->
 
-                <CheckBox
-                    android:id="@+id/cbClaimed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+<!--                <CheckBox-->
+<!--                    android:id="@+id/cbClaimed"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Claimed"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp" />
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Claimed"-->
+<!--                    android:textColor="#333333"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginStart="8dp" />-->
+<!--            </LinearLayout>-->
 
             <!-- Bouton Create Case -->
             <Button

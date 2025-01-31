@@ -11,6 +11,9 @@
     <color name="_4caf50">#4CAF50</color>
     <color name="a0aabf">#A0AABF</color>
 
+    <color name="colorAvailable">#3AA56B</color>
+    <color name="colorUnavailable">#FF0000</color>
+
     <!-- Button Color -->
     <color name="_388E3C">#388E3C</color> <!-- Dark Green for the Login Button -->
 

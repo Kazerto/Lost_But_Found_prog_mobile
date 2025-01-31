@@ -4,44 +4,44 @@
     <!--recuperation de text long en ecrivant ceci on peut une performance sur les phrases ou les mots-->
     <string name="logo_desc"></string>
     <!-- Login Page -->
-    <string name="welcome_back">Bienvenue!</string>
-    <string name="login">Connexion</string>
+    <string name="welcome_back">Welcome!</string>
+    <string name="login">Login</string>
     <string name="email">Email</string>
-    <string name="password">Mot de passe</string>
+    <string name="password">Password</string>
     <string name="logo_description">App Logo</string>
 
     <string name="notifications">Notifications</string>
     <string name="settings">Settings</string>
     <string name="home">Home</string>
-    <string name="icon_description">Image de l\'objet perdu</string>
+    <string name="icon_description">Image of the lost object</string>
 
 
 
     <!-- Sign Up Text -->
-    <string name="don_t_have_an_account_sign_up">Vous n\'avez pas de compte ? inscrivez-vous</string>
-    <string name="already_have_an_account_login">Vous avez un compte? connectez-vous</string>
-    <string name="register">Inscription</string>
-    <string name="username">Nom et Prenom</string>
-    <string name="create_an_account">Creer une compte</string>
-    <string name="welcome_to_lbf">Bienvenue dans LBF</string>
-    <string name="search">Rechercher un Objet Perdu</string>
-    <string name="account">Mon Compte</string>
-    <string name="objet">Signaler un Objet Trouvé</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
+    <string name="already_have_an_account_login">Do you have an account? Log in</string>
+    <string name="register">Registration</string>
+    <string name="username">First and last name</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="welcome_to_lbf">Welcome to LBF</string>
+    <string name="search">Search for a Lost Item</string>
+    <string name="account">My Account</string>
+    <string name="objet">Report a Found Item</string>
     <string name="longitude">Longitude</string>
-    <string name="headObjects">Récupération des Objets Perdus</string>
-    <string name="d_connexion">Déconnexion</string>
-    <string name="rechercher_un_objet_perdu_poster_par_moi_m_me">Rechercher un Objet Perdu Poster par moi-même</string>
-    <string name="rechercher_un_objet_perdu">Rechercher un Objet Perdu</string>
-    <string name="forgot_password">Mot de passe oublie?</string>
-    <string name="mes_objets_trouves"> Mes objets trouvés</string>
+    <string name="headObjects">Lost and Found Recovery</string>
+    <string name="d_connexion">Logout</string>
+    <string name="Search_for_a_Lost_Item_Posted_by_myself">Search for a Lost Item Posted by myself</string>
+    <string name="Search_for_a_Lost_Item">Search for a Lost Item Posted by myself</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="My_found_objects"> My found objects</string>
     <string name="lost_but_found"> Lost But Found </string>
 
-    <string name="forgot_password_title">Réinitialiser le mot de passe</string>
-    <string name="send_otp">Envoyer OTP</string>
-    <string name="otp">Entrez l\'OTP</string>
-    <string name="new_password">Nouveau mot de passe</string>
-    <string name="confirm_password">Confirmer le mot de passe</string>
-    <string name="reset_password">Réinitialiser le mot de passe</string>
-    <string name="back_to_login">Retour à la connexion</string>
+    <string name="forgot_password_title">Reset Password</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="otp">Enter the OTP</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="back_to_login">Back to login</string>
 
 </resources>

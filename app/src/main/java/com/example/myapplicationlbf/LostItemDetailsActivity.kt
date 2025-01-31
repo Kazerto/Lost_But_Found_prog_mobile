@@ -23,6 +23,7 @@ class LostItemDetailsActivity : AppCompatActivity() {
     private lateinit var locationTextView: TextView
     private lateinit var openMapButton: Button
     private lateinit var imageView: ImageView
+    private lateinit var phoneTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +32,14 @@ class LostItemDetailsActivity : AppCompatActivity() {
 
         // Références aux vues
         titleTextView = binding.titleTextView
-        villeTextView = binding.villeTextView
+        //villeTextView = binding.villeTextView
         usernameTextView = binding.posterNameTextView
         emailTextView = binding.posterEmailTextView
         descriptionTextView = binding.descriptionTextView
-        locationTextView = binding.locationTextView
+        //locationTextView = binding.locationTextView
         openMapButton = binding.openMapButton
         imageView = binding.imageView
+        phoneTextView = binding.posterPhoneTextView
 
         // Récupération des données passées dans l'intent
         val title = intent.getStringExtra("title") ?: ""
@@ -46,7 +48,7 @@ class LostItemDetailsActivity : AppCompatActivity() {
         val longitude = intent.getStringExtra("longitude")
         val imageString = intent.getStringExtra("image")
         val ville = intent.getStringExtra("ville")
-        val name = intent.getStringExtra("username")
+        val username = intent.getStringExtra("username")
         val email = intent.getStringExtra("email")
         val phone = intent.getStringExtra("phone")
 
@@ -54,11 +56,12 @@ class LostItemDetailsActivity : AppCompatActivity() {
 
         // Affichage des données
         titleTextView.text = title
-        usernameTextView.text = "Nom de la personne qui a poste : $name"
-        emailTextView.text = "Son email : $email, \nSon Numero de telephone : $phone"
-        descriptionTextView.text = description
-        locationTextView.text = "Position : $latitude, $longitude"
-        villeTextView.text = "Ville : $ville"
+        usernameTextView.text = "Posté par : $username"
+        emailTextView.text = "Email : $email"
+        phoneTextView.text = "Téléphone : $phone"
+        descriptionTextView.text = "$description"
+        //locationTextView.text = "Position : $latitude, $longitude"
+        //villeTextView.text = "Ville : $ville"
 
 
 

@@ -40,13 +40,13 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Rechercher un objet perdu"
+                android:queryHint="Search for a lost item"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@drawable/searchview_background"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:textColor="#2C3E50"
-                android:background="#E3EFE3"/>
+                android:background="@drawable/searchview_background"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -61,7 +61,7 @@
                 android:id="@+id/emptyMessageTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aucun objet trouvé."
+                android:text="No items found."
                 android:textSize="16sp"
                 android:textColor="#A5A5A5"
                 android:visibility="gone"

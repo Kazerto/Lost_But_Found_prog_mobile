@@ -7,11 +7,13 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,6 +29,7 @@ import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +44,12 @@ class LostItemActivity : BaseActivity() {
     private lateinit var binding: ActivityAddLostItemBinding
     private var imageUri: Uri? = null  // URI pour l'image sélectionnée
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            binding.imgUpload.setImageURI(it)
+            imageUri = it
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +67,7 @@ class LostItemActivity : BaseActivity() {
 
         // Gestion du bouton pour uploader une image
         binding.btnUploadImage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"  // Choix d'une image
-            startActivityForResult(intent, 101)  // Code de requête = 101
+            getContent.launch("image/*")
         }
 
         // Gestion du bouton pour obtenir la localisation actuelle
@@ -109,12 +116,22 @@ class LostItemActivity : BaseActivity() {
     private fun getAddressFromLocation(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
         try {
-            val addresses: List<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses != null && addresses.isNotEmpty()) {
-                val address = addresses[0].getAddressLine(0)
-                binding.etAddress.setText(address)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                geocoder.getFromLocation(latitude, longitude, 1) { addresses ->
+                    if (addresses.isNotEmpty()) {
+                        val address = addresses[0].getAddressLine(0)
+                        runOnUiThread {
+                            binding.etAddress.setText(address)
+                        }
+                    }
+                }
             } else {
-                Toast.makeText(this, "Unable to fetch address", Toast.LENGTH_SHORT).show()
+                @Suppress("DEPRECATION")
+                val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                if (addresses != null && addresses.isNotEmpty()) {
+                    val address = addresses[0].getAddressLine(0)
+                    binding.etAddress.setText(address)
+                }
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -122,13 +139,13 @@ class LostItemActivity : BaseActivity() {
         }
     }
 
+
+
     private fun submitForm() {
         val title = binding.etName.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
         val description = binding.etDescription.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
         val category = binding.spinnerCategories.selectedItem.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-        val contactNumber = binding.etContactNumber.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-
         val imagePart = imageUri?.let { uploadImage(it) }
 
         val retrofit = Retrofit.Builder()
@@ -137,8 +154,7 @@ class LostItemActivity : BaseActivity() {
             .build()
 
         if (imagePart != null) {
-            Log.d("ImageUpload", "ImagePart is created with name: ${imagePart.body?.contentType()}")
-        } else {
+            Log.d("ImageUpload", "ImagePart is created with name: ${imagePart.body.contentType()}")        } else {
             Log.e("ImageUpload", "ImagePart is null")
         }
 
@@ -148,7 +164,7 @@ class LostItemActivity : BaseActivity() {
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val authToken = sharedPreferences.getString("auth_token", null)
 
-        apiService.reportLostItem(title, description, address, category, contactNumber, imagePart, "Bearer $authToken")
+        apiService.reportLostItem(title, description, address, category, imagePart, "Bearer $authToken")
             .enqueue(object : Callback<LostItemResponse> {
                 override fun onResponse(call: Call<LostItemResponse>, response: Response<LostItemResponse>) {
                     if (response.isSuccessful) {
@@ -177,10 +193,8 @@ class LostItemActivity : BaseActivity() {
     private fun uploadImage(uri: Uri): MultipartBody.Part {
         val file = File(getRealPathFromURI(uri))
         Log.d("ImagePath", "chemin image: ${getRealPathFromURI(uri)}")
-        val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+        val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("image", file.name, requestBody)
-        Log.d("ImageUpload", "nom fichier: ${file.name}")
-
     }
 
     private fun getRealPathFromURI(uri: Uri): String {

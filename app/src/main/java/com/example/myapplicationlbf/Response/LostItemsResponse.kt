@@ -25,8 +25,8 @@ data class LostItem(
     val address: String,
     val reportedBy: ReportedBy,  // Créez un objet ReportedBy pour contenir les informations de l'utilisateur
     val imageUrl: String?, // En base64 ou URL
-    val  category: String,
-    val contactNumber : String,
+    val category: String,
+    val contactNumber : String?,
     val claimed : Boolean,
 )
 

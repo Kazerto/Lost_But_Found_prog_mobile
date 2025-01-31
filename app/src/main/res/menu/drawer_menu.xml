@@ -8,12 +8,12 @@
     <item
         android:id="@+id/nav_search_lost"
         android:icon="@drawable/ic_search"
-        android:title="@string/rechercher_un_objet_perdu"/>
+        android:title="@string/Search_for_a_Lost_Item"/>
 
     <item
         android:id="@+id/nav_search_own"
         android:icon="@drawable/ic_eye"
-        android:title="@string/mes_objets_trouves"/>
+        android:title="@string/My_found_objects"/>
 
     <item
         android:id="@+id/nav_account"
@@ -27,6 +27,6 @@
 
     <item
         android:id="@+id/nav_exit"
-        android:icon="@drawable/ic_phone"
+        android:icon="@drawable/close"
         android:title="Quitter"/>
 </menu>

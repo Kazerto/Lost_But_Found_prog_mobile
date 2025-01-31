@@ -9,18 +9,19 @@
         android:id="@+id/etSearchAgain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rechercher à nouveau..."
+        android:hint="Search again..."
         android:textColor="#000000"
         android:padding="10dp"
         android:layout_alignParentTop="true"
-        android:textSize="14sp"/>
+        android:textSize="14sp"
+        android:background="@drawable/searchview_background"/>
 
     <!-- Bouton pour refaire la recherche -->
     <Button
         android:id="@+id/btnSearchAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rechercher"
+        android:text="To research"
         android:textColor="#FFFFFF"
         android:layout_below="@id/etSearchAgain"
         android:backgroundTint="#3AA56B"
@@ -32,7 +33,7 @@
         android:id="@+id/tvSearchQuery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Résultats pour :"
+        android:text="Results for:"
         android:textSize="16sp"
         android:textColor="#000000"
         android:layout_below="@id/btnSearchAgain"

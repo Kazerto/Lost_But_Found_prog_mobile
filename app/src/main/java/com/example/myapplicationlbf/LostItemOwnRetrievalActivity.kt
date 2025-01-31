@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationlbf.Interface.ApiService
 import com.example.myapplicationlbf.Response.LoginResponse
 import com.example.myapplicationlbf.Response.LostItem
+import com.example.myapplicationlbf.Response.LostItemResponse
 import com.example.myapplicationlbf.Response.LostItemsResponse
+import com.example.myapplicationlbf.Response.ReportedBy
 import com.example.myapplicationlbf.databinding.ActivityLostItemRetrievalBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
@@ -44,11 +46,17 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
             intent.putExtra("description", lostItem.description)
             intent.putExtra("ville", lostItem.address)
             intent.putExtra("image", lostItem.imageUrl)
+            intent.putExtra("email", lostItem.reportedBy.email)
+            intent.putExtra("username", lostItem.reportedBy.username)
+            intent.putExtra("phone", lostItem.reportedBy.phone)
             startActivity(intent)
         }, { item ->
             // Lorsqu'un utilisateur clique sur "Supprimer"
             deleteItem(item)
-        })
+        },{ item, newStatus ->
+            updateItemStatus(item, newStatus)
+        }
+            )
         binding.recyclerView.adapter = itemAdapter
 
         // Créer l'instance Retrofit
@@ -59,9 +67,8 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
 
         apiService = retrofit.create(ApiService::class.java)
 
-        // Récupérer le token d'authentification depuis SharedPreferences
-        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        val authToken = sharedPreferences.getString("auth_token", null)
+        val authToken = getAuthToken()
+
 
         if (authToken != null) {
             fetchLostItems(authToken)
@@ -79,6 +86,38 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
         setupDrawer(drawerLayout, navigationView)
+    }
+
+    private fun updateItemStatus(item: LostItem, isAvailable: Boolean) {
+        val authToken = getAuthToken() ?: return
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.updateItemStatus(
+                    "Bearer $authToken",
+                    item.id,
+                    mapOf("claimed" to isAvailable)
+                )
+
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        // Mettre à jour la liste locale
+                        val updatedList = itemList.map {
+                            if (it.id == item.id) it.copy(claimed = isAvailable) else it
+                        }
+                        itemAdapter.updateItems(updatedList)
+                    } else {
+                        Toast.makeText(this@LostItemOwnRetrievalActivity,
+                            "Échec de la mise à jour", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@LostItemOwnRetrievalActivity,
+                        "Erreur réseau", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun fetchLostItems(authToken: String, searchQuery: String = "") {
@@ -114,6 +153,9 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
         }
     }
 
+
+
+
     private fun deleteItem(item: LostItem) {
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val authToken = sharedPreferences.getString("auth_token", null)
@@ -133,6 +175,7 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
                         // Mettre à jour la liste après suppression
                         val updatedItems = itemList.filter { it.id != item.id }
                         itemAdapter.updateItems(updatedItems)
+                        fetchLostItems(authToken)
                     } else {
                         // En cas d'erreur de réponse (code HTTP non 2xx)
                         val errorMessage = try {
@@ -148,7 +191,7 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
                         // Afficher le message d'erreur
                         Toast.makeText(this@LostItemOwnRetrievalActivity, errorMessage, Toast.LENGTH_SHORT).show()
                     }
-                }
+                }   
 
                 override fun onFailure(call: Call<LostItemsResponse>, t: Throwable) {
                     // Masquer le ProgressBar en cas d'échec de la requête
@@ -165,31 +208,38 @@ class LostItemOwnRetrievalActivity : BaseActivity() {
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    fetchLostItems(getAuthToken(), it)
+                    val authToken = getAuthToken()
+                    if (authToken != null) {
+                        fetchLostItems(authToken, it)
+                    }
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    fetchLostItems(getAuthToken(), it)
+                    val authToken = getAuthToken()
+                    if (authToken != null) {
+                        fetchLostItems(authToken, it)
+                    }
                 }
                 return true
             }
         })
     }
 
-    private fun getAuthToken(): String {
+    private fun getAuthToken(): String? {
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        return sharedPreferences.getString("auth_token", "") ?: ""
+        return sharedPreferences.getString("auth_token", "")
     }
 
     private fun checkIfListIsEmpty(items: List<LostItem>) {
         if (items.isEmpty()) {
-            binding.emptyMessageTextView.visibility = View.VISIBLE
+            binding.emptyMessageTextView.visibility = android.view.View.VISIBLE
         } else {
-            binding.emptyMessageTextView.visibility = View.GONE
+            binding.emptyMessageTextView.visibility = android.view.View.GONE
         }
     }
+
 }
 

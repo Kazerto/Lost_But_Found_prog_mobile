@@ -39,6 +39,8 @@ class LostItemRetrievalActivity : BaseActivity() {
             intent.putExtra("category", lostItem.category)
             intent.putExtra("image", lostItem.imageUrl)
             intent.putExtra("email", lostItem.reportedBy.email)
+            intent.putExtra("phone", lostItem.reportedBy.phone)
+            intent.putExtra("username", lostItem.reportedBy.username)
             startActivity(intent)
         }
         binding.recyclerView.adapter = itemAdapter
